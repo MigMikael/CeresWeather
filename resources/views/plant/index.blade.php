@@ -36,10 +36,10 @@
                             <a href="{{ url('plant/process_image/'.$plant->id) }}" target="_blank">View</a>
                         </td>
                         <td>
-                            <a href="{{ url('plant/'.$plant->id) }}" target="_blank">Compare</a>
+                            <a href="{{ url('bot/small_process_image/'.$plant->id) }}" target="_blank">View</a>
                         </td>
                         <td>
-                            <a href="{{ url('bot/small_process_image/'.$plant->id) }}" target="_blank">View</a>
+                            <a href="{{ url('plant/'.$plant->id) }}" target="_blank">Compare</a>
                         </td>
                     </tr>
                 @endforeach
