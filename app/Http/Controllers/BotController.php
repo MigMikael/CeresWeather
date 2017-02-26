@@ -79,8 +79,8 @@ class BotController extends Controller
 
                         $messages1 = [
                             'type' => 'image',
-                            'originalContentUrl' => url('api/bot/medium_original_image/'.$plant->id),
-                            'previewImageUrl' => url('api/bot/small_original_image/'.$plant->id)
+                            'originalContentUrl' => 'https://ceresweather.herokuapp.com/api/bot/medium_original_image/'.$plant->id,
+                            'previewImageUrl' => 'https://ceresweather.herokuapp.com/api/bot/small_original_image/'.$plant->id
                         ];
 
                         $data = [
@@ -131,5 +131,11 @@ class BotController extends Controller
         $response = curl_exec($curl);
         //$data = json_decode($response, true);
         curl_close($curl);
+    }
+
+    public function testUrl()
+    {
+        $plant = Plant::all()->last();
+        return url('api/bot/medium_original_image/'.$plant->id);
     }
 }
