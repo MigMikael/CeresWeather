@@ -45,7 +45,7 @@ class BotController extends Controller
 
                         $messages1 = [
                             'type' => 'text',
-                            'text' => 'สวัสดี วันนี้อุณหภูมิสูงสุด ' . $weather->temp_max . ' C / ต่ำสุด ' . $weather->temp_min . ' C'
+                            'text' => 'วันนี้อุณหภูมิสูงสุด ' . $weather->temp_max . ' C / ต่ำสุด ' . $weather->temp_min . ' C'
                         ];
 
                         $messages2 = [
@@ -55,7 +55,7 @@ class BotController extends Controller
 
                         $messages3 = [
                             'type' => 'text',
-                            'text' => 'เมฆ ' . $weather->clouds . '% /ความเร็วลมอยู่ที่ ' . $weather->wind_speed
+                            'text' => 'เมฆ ' . $weather->clouds . '% /ความเร็วลมอยู่ที่ ' . $weather->wind_speed .'m/s'
                         ];
 
                         /*$messages4 = [
@@ -74,15 +74,13 @@ class BotController extends Controller
                             ],
                         ];
                     }
-                    elseif (strpos($text, 'รูป') !== false){
+                    elseif (strpos($text, 'รูปต้นไม้') !== false){
                         $plant = Plant::all()->last();
 
                         $messages1 = [
                             'type' => 'image',
-                            'originalContentUrl' => 'https://ceresweather.herokuapp.com/bot/medium_original_image/'.$plant->id,
-                            //'previewImageUrl' => 'https://ceresweather.herokuapp.com/bot/small_original_image/'.$plant->id
-                            'previewImageUrl' => 'https://www.formfonts.com/files/1/9633/archicad-object-library-part-garden-tree-deciduous_small_FF_Model_ID9633_TreeDeciduous0611.jpg'
-
+                            'originalContentUrl' => 'https://ceresweather.herokuapp.com/api/bot/medium_original_image/'.$plant->id,
+                            'previewImageUrl' => 'https://ceresweather.herokuapp.com/api/bot/small_original_image/'.$plant->id
                         ];
 
                         $data = [
