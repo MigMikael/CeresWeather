@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Plant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
+use Log;
 
 class PlantController extends Controller
 {
@@ -26,7 +28,7 @@ class PlantController extends Controller
     {
         $original_img = $request->file('original_image');
         $process_img = $request->file('process_image');
-
+        Log::info($original_img);
         $plant = [
             'original_image' => File::get($original_img),
             'process_image' => File::get($process_img)
@@ -49,4 +51,41 @@ class PlantController extends Controller
 
         return response($plant->process_image)->header('Content-Type', 'image/jpg');
     }
+
+    public function getMediumOriginalImage($id)
+    {
+        $plant = Plant::findOrFail($id);
+
+        $img = Image::make($plant->original_image)->resize(1024, 1024);
+
+        return $img->response('jpg');
+    }
+
+    public function getMediumProcessImage($id)
+    {
+        $plant = Plant::findOrFail($id);
+
+        $img = Image::make($plant->process_image)->resize(1024, 1024);
+
+        return $img->response('jpg');
+    }
+
+    public function getSmallOriginalImage($id)
+    {
+        $plant = Plant::findOrFail($id);
+
+        $img = Image::make($plant->original_image)->resize(240, 240);
+
+        return $img->response('jpg');
+    }
+
+    public function getSmallProcessImage($id)
+    {
+        $plant = Plant::findOrFail($id);
+
+        $img = Image::make($plant->process_image)->resize(240, 240);
+
+        return $img->response('jpg');
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Plant;
 use Illuminate\Http\Request;
 //use GuzzleHttp\Client;
 use App\Weather;
@@ -34,47 +35,80 @@ class BotController extends Controller
             // Loop through each event
             foreach ($events['events'] as $event) {
                 // Reply only when message sent is in 'text' format
-                //if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+                if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 
-                $text = $event['message']['text'];
+                    $text = $event['message']['text'];
+                    $replyToken = $event['replyToken'];
 
-                $replyToken = $event['replyToken'];
+                    if (strpos($text, 'อากาศ') !== false) {
+                        $weather = Weather::all()->last();
 
-                $weather = Weather::all()->last();
+                        $messages1 = [
+                            'type' => 'text',
+                            'text' => 'สวัสดี วันนี้อุณหภูมิสูงสุด ' . $weather->temp_max . ' C / ต่ำสุด ' . $weather->temp_min . ' C'
+                        ];
 
-                $messages1 = [
-                    'type' => 'text',
-                    'text' => 'สวัสดี วันนี้อุณหภูมิสูงสุด '.$weather->temp_max.' C / ต่ำสุด '.$weather->temp_min.' C'
-                ];
+                        $messages2 = [
+                            'type' => 'text',
+                            'text' => 'ความชื้น ' . $weather->humidity . ' % /ความชื้นจากเซนเซอร์ ' . $weather->humidity_sensor
+                        ];
 
-                $messages2 = [
-                    'type' => 'text',
-                    'text' => 'ความชื้น '.$weather->humidity.' % /ความชื้นจากเซนเซอร์ '.$weather->humidity_sensor
-                ];
+                        $messages3 = [
+                            'type' => 'text',
+                            'text' => 'เมฆ ' . $weather->clouds . '% /ความเร็วลมอยู่ที่ ' . $weather->wind_speed
+                        ];
 
-                $messages3 = [
-                    'type' => 'text',
-                    'text' => 'เมฆ '.$weather->clouds.'% /ความเร็วลมอยู่ที่ '.$weather->wind_speed
-                ];
+                        /*$messages4 = [
+                            'type' => 'text',
+                            'text' => $event['message']['type']
+                        ];*/
 
-                $messages4 = [
-                    'type' => 'text',
-                    'text' => $event['message']['type']
-                ];
 
-                $url = 'https://api.line.me/v2/bot/message/reply';
-                $data = [
-                    'replyToken' => $replyToken,
-                    'messages' => [
-                        $messages1,
-                        $messages2,
-                        $messages3,
-                        $messages4
-                    ],
-                ];
-                $post = json_encode($data);
+                        $data = [
+                            'replyToken' => $replyToken,
+                            'messages' => [
+                                $messages1,
+                                $messages2,
+                                $messages3,
+                                //$messages4
+                            ],
+                        ];
+                    }
+                    elseif (strpos($text, 'รูป') !== false){
+                        $plant = Plant::all()->last();
 
-                self::sendPostRequest($url, $post);
+                        $messages1 = [
+                            'type' => 'image',
+                            'originalContentUrl' => url('api/bot/medium_original_image/'.$plant->id),
+                            'previewImageUrl' => url('api/bot/small_original_image/'.$plant->id)
+                        ];
+
+                        $data = [
+                            'replyToken' => $replyToken,
+                            'messages' => [
+                                $messages1
+                            ],
+                        ];
+                    }
+                    else {
+                        $messages1 = [
+                            'type' => 'text',
+                            'text' => 'พูดอะไรเนี่ย เราฟังไม่รู้เรื่องเลย'
+                        ];
+
+                        $data = [
+                            'replyToken' => $replyToken,
+                            'messages' => [
+                                $messages1
+                            ],
+                        ];
+                    }
+
+                    $url = 'https://api.line.me/v2/bot/message/reply';
+                    $post = json_encode($data);
+
+                    self::sendPostRequest($url, $post);
+                }
             }
         }
         //echo 'OK';

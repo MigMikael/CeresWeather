@@ -14,12 +14,12 @@
                         <img src="{{ 'http://openweathermap.org/img/w/'.$weather->weather_icon.'.png' }}"
                              style="width: 200px; height: 200px" class="thumbnail">
                     </div>
-                    <h3>Min Temperature :<b>{{ $weather->temp_min }}</b></h3>
-                    <h3>Max Temperature :<b>{{ $weather->temp_max }}</b></h3>
-                    <h3>Humidity :<b>{{ $weather->humidity }} %</b></h3>
-                    <h3>Humidity(Sensor) :<b>{{ $weather->humidity_sensor }}</b></h3>
-                    <h3>Clouds :<b>{{ $weather->clouds }} %</b></h3>
-                    <h3>Wind Speed :<b>{{ $weather->wind_speed }} m/s</b></h3>
+                    <h3>Min Temperature : <b>{{ $weather->temp_min }}</b></h3>
+                    <h3>Max Temperature : <b>{{ $weather->temp_max }}</b></h3>
+                    <h3>Humidity : <b>{{ $weather->humidity }} %</b></h3>
+                    <h3>Humidity(Sensor) : <b>{{ $weather->humidity_sensor }}</b></h3>
+                    <h3>Clouds : <b>{{ $weather->clouds }} %</b></h3>
+                    <h3>Wind Speed : <b>{{ $weather->wind_speed }} m/s</b></h3>
                 </div>
                 <div class="panel-footer">
                     <a href="{{ url()->previous() }}" class="btn btn-default">Back</a>

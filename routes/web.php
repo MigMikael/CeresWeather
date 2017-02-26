@@ -22,3 +22,7 @@ Route::get('plant', 'PlantController@index');
 Route::get('plant/{id}', 'PlantController@show');
 Route::get('plant/original_image/{id}', 'PlantController@getOriginalPlantImage');
 Route::get('plant/process_image/{id}', 'PlantController@getProcessPlantImage');
+
+
+
+
