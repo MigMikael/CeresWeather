@@ -79,8 +79,8 @@ class BotController extends Controller
 
                         $messages1 = [
                             'type' => 'image',
-                            'originalContentUrl' => 'https://ceresweather.herokuapp.com/api/bot/medium_original_image/'.$plant->id,
-                            'previewImageUrl' => 'https://ceresweather.herokuapp.com/api/bot/small_original_image/'.$plant->id
+                            'originalContentUrl' => 'https://ceresweather.herokuapp.com/bot/medium_original_image/'.$plant->id,
+                            'previewImageUrl' => 'https://ceresweather.herokuapp.com/bot/small_original_image/'.$plant->id
                         ];
 
                         $data = [
