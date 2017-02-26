@@ -80,7 +80,9 @@ class BotController extends Controller
                         $messages1 = [
                             'type' => 'image',
                             'originalContentUrl' => 'https://ceresweather.herokuapp.com/bot/medium_original_image/'.$plant->id,
-                            'previewImageUrl' => 'https://ceresweather.herokuapp.com/bot/small_original_image/'.$plant->id
+                            //'previewImageUrl' => 'https://ceresweather.herokuapp.com/bot/small_original_image/'.$plant->id
+                            'previewImageUrl' => 'https://www.formfonts.com/files/1/9633/archicad-object-library-part-garden-tree-deciduous_small_FF_Model_ID9633_TreeDeciduous0611.jpg'
+
                         ];
 
                         $data = [
