@@ -5,11 +5,11 @@
 @section('content')
     <div class="row">
         <div class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
-            <div class="jumbotron" style="text-align: center;">
+            <div class="jumbotron card-header">
                 <h1>Plant Data</h1>
                 <p>plant picture from raspberry pi camera</p>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive card-table">
                 <table class="table table-hover">
                     <thead>
                     <tr>

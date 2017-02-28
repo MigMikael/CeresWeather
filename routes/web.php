@@ -27,3 +27,6 @@ Route::get('test_url', 'BotController@testUrl');
 
 Route::get('graph', 'GraphController@index');
 
+Route::get('document', function (){
+    return view('document');
+});
