@@ -9,22 +9,33 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<nav class="navbar navbar-default">
+<div class="row" style="margin-bottom: 80px">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <a class="navbar-brand" href="{{ url('/') }}">Ceres</a>
         </div>
-        <ul class="nav navbar-nav">
-            <li @if(Request::is('weather'))class="active" @endif>
-                <a href="{{ url('weather') }}">Weather</a>
-            </li>
-            <li @if(Request::is('plant'))class="active" @endif>
-                <a href="{{ url('plant') }}">Plant</a>
-            </li>
-        </ul>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li @if(Request::is('weather'))class="active" @endif>
+                    <a href="{{ url('weather') }}">Weather</a>
+                </li>
+                <li @if(Request::is('plant'))class="active" @endif>
+                    <a href="{{ url('plant') }}">Plant</a>
+                </li>
+                <li @if(Request::is('graph'))class="active" @endif>
+                    <a href="{{ url('graph') }}">Graph</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
+</div>
 
 <div class="container-fluid">
     @yield('content')

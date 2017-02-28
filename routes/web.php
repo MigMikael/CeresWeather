@@ -25,3 +25,5 @@ Route::get('plant/process_image/{id}', 'PlantController@getProcessPlantImage');
 
 Route::get('test_url', 'BotController@testUrl');
 
+Route::get('graph', 'GraphController@index');
+
