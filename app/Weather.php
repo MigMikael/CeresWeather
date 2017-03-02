@@ -11,6 +11,7 @@ class Weather extends Model
     protected $table = 'weathers';
 
     protected $fillable = [
+        'temp',
         'temp_min',
         'temp_max',
         'humidity',

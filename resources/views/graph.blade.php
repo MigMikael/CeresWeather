@@ -10,9 +10,9 @@
 
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
-                ['Time', 'Temp_Min', 'Temp_Max'],
+                ['Time', 'Temp_Min'],
                 @foreach($weathers as $weather)
-                ['{{ date('G.i', strtotime($weather->created_at)) }}', {{ $weather->temp_min }}, {{ $weather->temp_max }}],
+                ['{{ date('G.i', strtotime($weather->created_at)) }}', {{ $weather->temp }}],
                 @endforeach
             ]);
 

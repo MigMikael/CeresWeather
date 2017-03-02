@@ -15,6 +15,7 @@ class CreateWeatherTable extends Migration
     {
         Schema::create('weathers', function (Blueprint $table) {
             $table->increments('id');
+            $table->float('temp');
             $table->float('temp_min');
             $table->float('temp_max');
             $table->float('humidity');
