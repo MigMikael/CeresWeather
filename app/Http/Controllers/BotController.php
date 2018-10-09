@@ -27,6 +27,11 @@ class BotController extends Controller
         echo $result;
     }
 
+    public function line(Request $request)
+    {
+        self::sendPostRequest('http://13.76.157.189:3000/line/callback', $request->all());
+    }
+
     public function handleMessage(Request $request)
     {
         $events = $request->all();
